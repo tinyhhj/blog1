@@ -6,6 +6,9 @@ var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var cleanCSS = require('gulp-clean-css');
 var browserSync = require('browser-sync').create();
+var uglify = require('gulp-uglify');
+var terser = require('gulp-terser');
+
 
 var banner = ['/*!\n',
   ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
@@ -39,7 +42,35 @@ gulp.task('css:minify' ,  function() {
 
 gulp.task('css' , ['css:compile' , 'css:minify']);
 
-gulp.task('default' , ['css']);
+gulp.task('es' , function() {
+    gulp.src([
+        './js/*.js',
+        '!./js/*.min.js'
+    ])
+    .pipe(terser())
+    .pipe(rename({
+        suffix:'.min'
+    }))
+    .pipe(gulp.dest('./build'));
+})
+
+gulp.task('js:minify', function() {
+    return gulp.src([
+        './build/*.js',
+        '!./build/*.min.js'
+      ])
+      .pipe(uglify())
+      .pipe(rename({
+        suffix: '.min'
+      }))
+      .pipe(header(banner, {
+        pkg: pkg
+      }))
+      .pipe(gulp.dest('./build'))
+      .pipe(browserSync.stream());
+  });
+gulp.task('js' , ['es']);
+gulp.task('default' , ['css','js']);
 
 gulp.task('browserSync' , function() {
     browserSync.init({
@@ -50,7 +81,8 @@ gulp.task('browserSync' , function() {
 });
 
 
-gulp.task('dev' , ['css' , 'browserSync'], function() {
+gulp.task('dev' , ['css' ,'js', 'browserSync'], function() {
     gulp.watch('./css/*.scss' , ['css']);
+    gulp.watch('./js/*.js' , ['js']);
     gulp.watch('./*.html' , browserSync.reload);
 })
