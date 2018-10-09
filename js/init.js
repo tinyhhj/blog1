@@ -5,16 +5,11 @@ $(function() {
             let children = $(element).children();
             $(element).text(result).append(children);
         }
-    })
-});
+    });
 
-(function initMessage() {
-    let label = {};
-    
-    label.algorithm = 'Algorithm';
-    label.structure = 'Structure';
-    label.language = 'Language';
-    label.fullSearch = '완전탐색';
-    
-    common.storage.put('label' , label);
-})();
+    const algorithmList = $('#algorithm-list-group').append(common.modules.listGroup(common.storage.get('menu.algorithm')));
+    algorithmList
+    .children('.list-group')
+    .children('a')
+    .each((idx,cur)=> $(cur).attr({'data-target' : '#'+$(cur).next().attr('id')}));
+});

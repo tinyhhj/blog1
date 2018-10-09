@@ -1,6 +1,7 @@
 var common = common || {undefined : undefined , empty : {}};
 
 (function(common) {
+    let idGen = 0;
     const pipe = (...fns)=>(init={})=>fns.reduce((acc,cur)=>cur(acc) , init);
     const assert = (condition , message='error occured' , cb)=> {
         if( !condition) {
@@ -32,9 +33,42 @@ var common = common || {undefined : undefined , empty : {}};
             get : get
         };
     })();
+
+    const tagFactory = (tag)=>(props)=>{
+        let obj = $('<'+tag+'>').attr({id : 'id-'+(++idGen)});
+        if( props.className ) obj.addClass(props.className);
+        if( props.attr ) obj.attr(props.attr);
+        if( props.css ) obj.css(props.css);
+        if( props.text ) obj.text(props.text);
+        if( props.children ) obj.append(props.children);        
+        if( props.callback ) obj.click(props.callback);
+        if( props.value ) obj.val(props.value);
+        return obj;
+    }
+
+    const prettyPrint = (fn)=>{
+        let space = '';
+        const tab = '    ';
+        return fn.toString()
+        .replace(/\{\s*|\s*\}\s*|\;\s*(?!\s*\})/g, function(match) {
+            if( /\{/.test(match)) {
+                space += tab;
+                return '{\n' + space;
+            } else if( /\;/.test(match)){
+                return ';\n'+space
+            }else {
+                space = space.slice(4);
+                return '\n'+space+'}\n'+space ;
+            }
+        })
+        .replace(/\}\s*\)/g , '})')
+        
+    }
     
     
     common.pipe = pipe;
     common.assert = assert;
     common.storage = storage;
+    common.tagFactory = tagFactory;
+    common.prettyPrint = prettyPrint;
 })(common);

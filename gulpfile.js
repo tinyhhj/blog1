@@ -8,6 +8,7 @@ var cleanCSS = require('gulp-clean-css');
 var browserSync = require('browser-sync').create();
 var uglify = require('gulp-uglify');
 var terser = require('gulp-terser');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 var banner = ['/*!\n',
@@ -45,9 +46,12 @@ gulp.task('css' , ['css:compile' , 'css:minify']);
 gulp.task('es' , function() {
     gulp.src([
         './js/*.js',
-        '!./js/*.min.js'
+        '!./js/*.min.js',
+        '!./js/data.js'
     ])
+    .pipe(sourcemaps.init())
     .pipe(terser())
+    .pipe(sourcemaps.write())
     .pipe(rename({
         suffix:'.min'
     }))
