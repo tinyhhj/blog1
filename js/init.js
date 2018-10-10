@@ -6,10 +6,11 @@ $(function() {
             $(element).text(result).append(children);
         }
     });
-
+    let order = 1;
     const algorithmList = $('#algorithm-list-group').append(common.modules.listGroup(common.storage.get('menu.algorithm')));
     algorithmList
     .children('.list-group')
     .children('a')
-    .each((idx,cur)=> $(cur).attr({'data-target' : '#'+$(cur).next().attr('id')}));
+    .each((idx,cur)=> $(cur).attr({'data-target' : '#'+$(cur).next().attr('id')}))
+    
 });

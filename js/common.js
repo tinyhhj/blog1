@@ -49,19 +49,39 @@ var common = common || {undefined : undefined , empty : {}};
     const prettyPrint = (fn)=>{
         let space = '';
         const tab = '    ';
-        return fn.toString()
-        .replace(/\{\s*|\s*\}\s*|\;\s*(?!\s*\})/g, function(match) {
-            if( /\{/.test(match)) {
-                space += tab;
-                return '{\n' + space;
-            } else if( /\;/.test(match)){
-                return ';\n'+space
-            }else {
-                space = space.slice(4);
-                return '\n'+space+'}\n'+space ;
+        return fn.toString().split('\n')
+        .map(v=>{
+            if (/[{}].*[{}]/.test(v)) {
+                return v.indexOf('{') > v.indexOf('}') ? 
+            v.replace(/^\s*/g , space.slice(4)) :
+            v.replace(/^\s*/g , space);
             }
-        })
-        .replace(/\}\s*\)/g , '})')
+            else if( /\{/.test(v) ) {
+                const ns = v.replace(/^\s*/g , space)
+                space += tab;
+                return ns;
+            }
+            else if (/\}/.test(v)) {
+                space = space.slice(4);
+                return v.replace(/^\s*/g , space);
+            }
+            else {
+                return v.replace(/^\s*/g , space);
+            }
+        }).join('\n');
+        
+        // .replace(/\{\s*|\s*\}\s*|\;\s*(?!\s*\})/g, function(match) {
+        //     if( /\{/.test(match)) {
+        //         space += tab;
+        //         return '{\n' + space;
+        //     } else if( /\;/.test(match)){
+        //         return ';\n'+space
+        //     }else {
+        //         space = space.slice(4);
+        //         return '\n'+space+'}\n'+space ;
+        //     }
+        // })
+        // .replace(/\}\s*\)/g , '})')
         
     }
     
