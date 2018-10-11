@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan" rel="stylesheet">
+        <style>
+            * { 
+                box-sizing : border-box;
+            }
+            header {
+                padding : 30px;
+                font-family: 'Kodchasan', sans-serif;
+                font-size : 2rem;
+                text-align : center;
+                border-bottom : 1px solid gray;
+                background-image : url(static/background.jpeg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                color : white;
+            }
+            .container {
+                margin : 30px;
+                display : flex;
+                flex-direction: column;
+            }
+            main.content {
+                display:flex;
+            }
+            nav {
+                flex-basis : 150px;
+                padding-right : 20px;
+                text-align: center;
+            }
+            nav ul a {
+                display : inline-block;
+                text-decoration: none;
+                margin-top : 10px;
+                padding: 10px 0px;
+            }
+            aside { 
+                flex-basis : 100px;
+                padding : 10px;
+                text-align : center;
+            }
+            .icon {
+                width : 24px;
+                height: 24px;
+            }
+            .icon-m {
+                width : 48px;
+                height: 48px;
+            }
+            aside img {
+                display: block;
+                margin : auto;
+            }
+            article {
+                flex-grow : 1;
+                flex-basis : 75%;
+            }
+
+            footer {
+                padding : 20px;
+                text-align:center;
+            }
+
+            @media(max-width:500px) {
+                main.content {
+                    flex-direction : column;
+                }
+                nav {
+                    flex-basis : auto;
+                }
+                main.content > * {
+                    margin : 8px 0px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>CSS-DEMO</h1>
+            </header>
+            <main class="content">
+                <nav>
+                    <ul>
+                        <a href="flex-images.html">flex-images</a>
+                        <a>menu2</a>
+                    </ul>
+                </nav>
+                <article>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fringilla lectus, eu maximus sem. Cras in dui tellus. Maecenas dapibus mauris vel eros interdum tincidunt. Curabitur malesuada odio at neque scelerisque, ut laoreet enim ornare. Nulla maximus, eros eu rutrum scelerisque, eros sem lobortis quam, id commodo elit est ac ante. Nullam laoreet arcu leo, et convallis eros dictum sed. Cras molestie lectus quis molestie euismod. Quisque viverra nibh odio, a lobortis elit mattis auctor. Sed sapien elit, finibus id tellus faucibus, interdum gravida lorem. Quisque mauris lectus, accumsan varius nibh sed, dignissim rutrum quam. Sed pharetra ipsum posuere tellus tempus rutrum vitae ac libero. Proin eget metus vehicula, scelerisque ligula eget, lacinia est. Pellentesque at nunc ex. Aliquam quis tellus velit. Nullam pulvinar magna ante, ac lacinia orci cursus et. Ut egestas metus elit, id tristique nunc lacinia a.
+
+                        Integer ornare pulvinar varius. Morbi sollicitudin risus vel velit ullamcorper ultricies. Aenean vel leo et purus ultricies mattis. Pellentesque venenatis gravida auctor. Maecenas nisl orci, consequat at convallis sed, semper semper lectus. Nam rutrum dolor eu nisl maximus faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque dolor lectus, pretium cursus enim at, scelerisque vestibulum turpis.
+                        
+                        Suspendisse a arcu consectetur, dignissim leo sed, efficitur sapien. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin mattis fringilla diam nec semper. Donec nisi sapien, auctor a dui a, fermentum viverra dui. Maecenas lacinia, sem et ultrices hendrerit, sapien urna mattis est, sed viverra urna turpis at dolor. Integer eu enim ac mi mattis varius. Integer sed turpis pharetra, auctor ex vel, ornare nunc. Mauris sit amet ante feugiat, dignissim eros quis, pharetra ex.
+                        
+                        Praesent ac tempus turpis, a vulputate nibh. Quisque urna leo, efficitur a dapibus eu, luctus ut nisl. Vivamus sit amet massa molestie, ultrices erat vel, commodo lacus. Praesent at sapien ullamcorper, efficitur tellus vitae, aliquet risus. Donec at eros ultrices, faucibus lacus et, posuere elit. Maecenas eget elementum tortor. Morbi a venenatis mi. Quisque sollicitudin velit nulla, sed volutpat nisl dignissim nec. Pellentesque ut vestibulum ex, et condimentum velit. Pellentesque urna nunc, malesuada et varius nec, efficitur vitae libero. Donec efficitur mattis nulla vel efficitur. Nunc ut ligula metus. In non purus a ante porta lobortis ac et neque. Vivamus ac metus quis neque lobortis commodo id ac mi. Sed id diam efficitur, pretium mi sed, fringilla leo.
+                        
+                        
+                </article>
+                <aside>
+                    <img class="icon" src="static/cite.png"></strong>
+                    <br><br>
+                    <a href="https://opentutorials.org/course/2418" target="_blank">생활코딩</a>
+                </aside>
+            </main>
+            <footer>
+                <a href="https://github.com/tinyhhj/tinyhhj.github.io">
+                    <img class="icon icon-m" src="static/github.png">
+                </a>
+            </footer>
+        </div>
+    </body>
+</html>
